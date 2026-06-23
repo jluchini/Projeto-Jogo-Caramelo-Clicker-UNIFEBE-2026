@@ -1,0 +1,635 @@
+:root {
+    /* CORES */
+    --cor-fundo: #75d6cf;
+    --cor-fundo-topo: #6fd3dc;
+    --cor-fundo-baixo: #98e0b5;
+
+    --cor-card: #fff8d8;
+    --cor-card-claro: #fff0a8;
+    --cor-branco: #ffffff;
+
+    --cor-borda: #222222;
+    --cor-borda-botao: #1d1d1d;
+
+    --cor-amarelo: #ffbf00;
+    --cor-amarelo-claro: #ffd700;
+    --cor-verde: #2e8b57;
+
+    --cor-texto-escuro: #111111;
+    --cor-texto-medio: #333333;
+
+    /* BORDAS */
+    --borda-padrao: 4px solid var(--cor-borda);
+    --borda-modal: 5px solid var(--cor-borda);
+    --borda-botao: 4px solid var(--cor-borda-botao);
+
+    /* SOMBRAS */
+    --sombra-texto: 3px 3px 0 var(--cor-borda);
+    --sombra-texto-menor: 2px 2px 0 var(--cor-borda);
+    --sombra-card: 0 7px 0 var(--cor-borda);
+    --sombra-botao: 0 5px 0 var(--cor-borda-botao);
+    --sombra-modal: 0 0 0 100vw rgba(0, 0, 0, 0.7);
+
+    /* ARREDONDAMENTOS */
+    --raio-pequeno: 10px;
+    --raio-medio: 14px;
+    --raio-grande: 20px;
+
+    /* TRANSIÇÕES */
+    --transicao-rapida: 0.15s;
+    --transicao-media: 0.3s ease;
+
+    --escala-jogo: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--cor-fundo);
+}
+
+.escala-site {
+    width: 100%;
+    height: 100%;
+}
+
+.jogo {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.botoes-superiores button {
+    width: 58px;
+    height: 58px;
+    border: var(--borda-botao);
+    border-radius: var(--raio-pequeno);
+    background: var(--cor-card);
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: var(--sombra-botao);
+}
+
+.botoes-superiores {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.botoes-superiores button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--cor-borda-botao);
+}
+
+.click-area {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    background-image: url("imagens/background-liso.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.contador {
+    position: absolute;
+    left: 50%;
+    bottom: 45px;
+    transform: translateX(-50%);
+    text-align: center;
+    color: var(--cor-branco);
+    text-shadow: var(--sombra-texto);
+    z-index: 3;
+}
+
+.icone-folha {
+    width: 48px;
+}
+
+.contador h1 {
+    font-size: 42px;
+}
+
+.contador p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.contador-regador {
+    position: absolute;
+    right: clamp(15px, 5vw, 80px);
+    bottom: clamp(15px, 5vh, 40px);
+    text-align: center;
+    color: var(--cor-branco);
+    text-shadow: var(--sombra-texto-menor);
+    z-index: 4;
+    transform: scale(clamp(0.7, 1vw, 1));
+    transform-origin: bottom right;
+}
+
+.regador-container {
+    position: relative;
+    width: clamp(110px, 13vw, 180px);
+    height: clamp(85px, 10vw, 140px);
+    margin: 0 auto;
+}
+
+.agua-recorte {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    overflow: hidden;
+    z-index: 1;
+    transition: height 0.3s ease;
+}
+
+#aguaRegador {
+    position: absolute;
+    left: 12%;
+    bottom: 0;
+    width: 76%;
+    height: clamp(85px, 10vw, 140px);
+    object-fit: contain;
+}
+
+.regador-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.titulo-crescimento {
+    font-size: clamp(12px, 1.4vw, 18px);
+}
+
+#textoRegador {
+    font-size: clamp(11px, 1.2vw, 16px);
+}
+
+.combo-container {
+    position: absolute;
+    left: 40px;
+    bottom: 45px;
+}
+
+.barra-combo {
+    width: 30px;
+    height: 250px;
+    border: var(--borda-padrao);
+    border-radius: var(--raio-grande);
+    background: var(--cor-card);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+#barraCombo {
+    width: 100%;
+    height: 0%;
+    background: var(--cor-amarelo);
+    transition: height 0.2s;
+}
+
+.texto-bonus {
+    position: absolute;
+    left: -25px;
+    top: -55px;
+    width: 90px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--cor-amarelo-claro);
+    text-shadow:
+        2px 2px 0 #000,
+        0 0 10px var(--cor-amarelo-claro);
+    display: none;
+    z-index: 1;
+}
+
+.texto-bonus.ativo {
+    display: block;
+    animation: pulsarBonus 0.5s infinite alternate;
+}
+
+.barra-combo.bonus {
+    animation: pulsarBarra 0.5s infinite alternate;
+}
+
+.barra-combo.bonus #barraCombo {
+    background: linear-gradient(to top, #ffb700, #ffe600, #fff8a6);
+}
+
+@keyframes pulsarBarra {
+    from {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    to {
+        transform: scale(1.08);
+        filter: brightness(1.5);
+    }
+}
+
+@keyframes pulsarBonus {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+}
+
+.personagem-area {
+    position: absolute;
+    width: 700px;
+    height: 500px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%) scale(var(--escala-jogo));
+    transform-origin: center;
+}
+
+#caramelo {
+    position: absolute;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/* PARADO */
+#caramelo.estado-parado {
+    width: 300px;
+    left: 100px;
+    bottom: 40px;
+}
+
+/* REGANDO - NORMAL */
+#caramelo.skin-normal.estado-regando {
+    width: 950px;
+    left: 20px;
+    bottom: -30px;
+}
+
+/* REGANDO - MOTIVADO */
+#caramelo.skin-motivado.estado-regando {
+    width: 1040px;
+    left: 40px;
+    bottom: -40px;
+}
+
+/* REGANDO - WAPP */
+#caramelo.skin-wapp.estado-regando {
+    width: 800px;
+    left: -170px;
+    bottom: -30px;
+}
+
+/* REGANDO - ESPACIAL */
+#caramelo.skin-espacial.estado-regando {
+    width: 730px;
+    left: -20px;
+    bottom: -20px;
+}
+
+/* REGANDO - LENDÁRIO */
+#caramelo.skin-lendario.estado-regando {
+    width: 970px;
+    left: -100px;
+    bottom: -20px;
+}
+
+#caramelo.clicando {
+    transform: scale(1.05);
+}
+
+#planta {
+    position: absolute;
+    object-fit: contain;
+}
+
+/* MUDA */
+#planta.planta-0 {
+    width: 160px;
+    left: 470px;
+    bottom: 40px;
+}
+
+/* ARBUSTO */
+#planta.planta-1 {
+    width: 250px;
+    left: 450px;
+    bottom: 35px;
+}
+
+/* ÁRVORE JOVEM */
+#planta.planta-2 {
+    width: 300px;
+    left: 420px;
+    bottom: 30px;
+}
+
+/* ÁRVORE ADULTA */
+#planta.planta-3 {
+    width: 650px;
+    left: 260px;
+    bottom: -30px;
+}
+
+/* LENDÁRIA */
+#planta.planta-4 {
+    width: 700px;
+    left: 260px;
+    bottom: -30px;
+}
+
+.loja {
+    width: 38%;
+    min-width: 320px;
+    height: 100%;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.35);
+    border-left: 5px solid rgba(255, 255, 255, 0.5);
+    overflow-y: auto;
+}
+
+.loja h2,
+.loja h3 {
+    text-align: center;
+    color: var(--cor-branco);
+    text-shadow: var(--sombra-texto);
+}
+
+.loja h2 {
+    font-size: 36px;
+}
+
+.loja h3 {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.upgrade {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--cor-card);
+    border: var(--borda-padrao);
+    border-radius: var(--raio-medio);
+    padding: 18px;
+    margin-bottom: 18px;
+    cursor: pointer;
+    box-shadow: var(--sombra-card);
+    transition: var(--transicao-rapida);
+}
+
+.upgrade:hover {
+    transform: translateY(-3px);
+}
+
+.upgrade:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #222;
+}
+
+.upgrade.indisponivel {
+    opacity: 0.45;
+    filter: grayscale(1);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.upgrade.indisponivel:hover,
+.upgrade.indisponivel:active {
+    transform: none;
+    box-shadow: var(--sombra-card);
+}
+
+.upgrade-icone {
+    font-size: 45px;
+}
+
+.upgrade h4 {
+    font-size: 22px;
+    color: var(--cor-texto-escuro);
+}
+
+.upgrade p {
+    font-size: 15px;
+    color: var(--cor-texto-medio);
+}
+
+.upgrade strong {
+    display: block;
+    margin-top: 5px;
+    color: green;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: 540px;
+    height: 430px;
+    background: var(--cor-card);
+    border: var(--borda-modal);
+    border-radius: var(--raio-grande);
+    z-index: 100;
+    padding: 30px;
+    box-shadow: var(--sombra-modal);
+}
+
+.modal h2 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 30px;
+    color: var(--cor-amarelo);
+    text-shadow: var(--sombra-texto);
+}
+
+.fechar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    font-size: 34px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal label {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.modal input {
+    width: 100%;
+}
+
+.escondido {
+    display: none;
+}
+
+.skins-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.skin {
+    padding: 12px;
+    border: 4px solid #222;
+    border-radius: 12px;
+    background: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skin img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.skin.bloqueada {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.skin.bloqueada img {
+    visibility: hidden;
+}
+
+.skin.liberada {
+    opacity: 1;
+    cursor: pointer;
+    filter: none;
+}
+
+.skin.liberada img {
+    visibility: visible;
+}
+
+.skin.selecionada {
+    background: #fff0a8;
+    box-shadow: 0 0 0 4px #ffbf00;
+}
+
+.folha-voando {
+    position: fixed;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--cor-verde);
+    pointer-events: none;
+    animation: subirFolha 1s forwards;
+    z-index: 200;
+    text-shadow: 2px 2px 0 var(--cor-branco);
+}
+
+@keyframes subirFolha {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-80px) scale(1.4);
+    }
+}
+
+@media (max-width: 1400px) {
+    :root {
+        --escala-jogo: 0.9;
+    }
+}
+
+@media (max-width: 1200px) {
+    :root {
+        --escala-jogo: 0.8;
+    }
+
+    .contador-regador {
+        right: 20px;
+        bottom: 20px;
+        transform: scale(0.75);
+    }
+}
+
+@media (max-width: 1000px) {
+    :root {
+        --escala-jogo: 0.7;
+    }
+
+    .loja {
+        width: 40%;
+    }
+
+    .click-area {
+        flex: 1;
+    }
+}
+
+@media (max-height: 800px) {
+    .contador-regador {
+        right: 20px;
+        bottom: 15px;
+        transform: scale(0.75);
+    }
+
+    .personagem-area {
+        top: 48%;
+    }
+}
+
+@media (max-width: 1366px) and (max-height: 768px) {
+    .contador-regador {
+        right: 15px;
+        bottom: 10px;
+        transform: scale(0.68);
+    }
+
+    .personagem-area {
+        transform: translate(-50%, -50%) scale(0.75);
+    }
+
+    .loja {
+        min-width: 300px;
+        padding: 18px;
+    }
+}
+
+@media (max-width: 900px) {
+    .contador-regador {
+        right: 10px;
+        bottom: 10px;
+        transform: scale(0.6);
+    }
+}

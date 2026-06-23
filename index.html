@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Caramelo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="escala-site">
+    <main class="jogo">
+
+        <section class="botoes-superiores">
+            <button id="botaoConfig">⚙️</button>
+            <button id="botaoSkins">👕</button>
+        </section>
+
+        <section class="click-area">
+
+            <div class="contador">
+                <img src="imagens/folha-contador-icone.png" alt="Folha" class="icone-folha">
+                <h1 id="totalFolhas">0</h1>
+                <p>Folhas</p>
+            </div>
+
+            <div class="contador-regador">
+
+                <h3 class="titulo-crescimento">Crescimento da Árvore</h3>
+                <div class="regador-container">
+                    <div class="agua-recorte">
+                        <img id="aguaRegador" src="imagens/mascara-agua-regador.png" alt="">
+                    </div>
+
+                    <img src="imagens/regador-contador-icone.png" class="regador-img">
+                </div>
+
+                <p id="textoRegador">0 / 1000</p>
+
+            </div>
+
+            <div class="combo-container">
+                <div id="textoBonus" class="texto-bonus">🔥 2X 🔥</div>
+
+                <div class="barra-combo">
+                    <div id="barraCombo"></div>
+                </div>
+            </div>
+
+            <div class="personagem-area">
+                <img id="planta" src="imagens/muda-move.gif" alt="Planta">
+                <img id="caramelo" src="imagens/gif caramelo.gif" alt="Caramelo">
+            </div>
+
+        </section>
+
+        <aside class="loja">
+            <h2>Click Power</h2>
+            <h3 id="clickPower">+1</h3>
+
+            <div class="upgrade" id="upgradePetisco">
+                <span class="upgrade-icone">🦴</span>
+                <div>
+                    <h4>Petisco Motivacional</h4>
+                    <p>+10 folha por clique</p>
+                    <strong>300 folhas</strong>
+                </div>
+            </div>
+
+            <div class="upgrade" id="upgradeWapp">
+                <span class="upgrade-icone">🌠</span>
+                <div>
+                    <h4>Wapp Milagroso</h4>
+                    <p>+40 folhas por clique</p>
+                    <strong>2.500 folhas</strong>
+                </div>
+            </div>
+
+            <div class="upgrade" id="upgradeArminha">
+                <span class="upgrade-icone">🛸</span>
+                <div>
+                    <h4>Arminha de Água Espacial</h4>
+                    <p>+120 folhas por clique</p>
+                    <strong>9.000 folhas</strong>
+                </div>
+            </div>
+
+            <div class="upgrade" id="upgradeCapa">
+                <span class="upgrade-icone">🌧️</span>
+                <div>
+                    <h4>Capa de Chuva do Caos</h4>
+                    <p>+300 folhas por clique</p>
+                    <strong>15.000 folhas</strong>
+                </div>
+            </div>
+        </aside>
+    </main>
+</div>
+
+    <section id="menuConfig" class="modal escondido">
+        <button class="fechar">X</button>
+        <h2>Configurações</h2>
+
+        <label>
+            Música
+            <input type="range" id="volumeMusica" min="0" max="100" value="50">
+        </label>
+
+        <label>
+            Efeitos de som
+            <input type="range" id="volumeEfeitos" min="0" max="100" value="50">
+        </label>
+    </section>
+
+    <section id="menuSkins" class="modal escondido">
+        <button class="fechar">X</button>
+        <h2>Skins</h2>
+
+        <div class="skins-grid">
+            <button class="skin liberada" data-skin="normal">
+                <img src="imagens/gif caramelo.gif" alt="Skin normal">
+                <span>🐕 Normal</span>
+            </button>
+
+            <button class="skin bloqueada" data-skin="motivado">
+                <img src="imagens/caramelo-motivado.gif" alt="Skin motivado">
+                <span>❓ ???</span>
+            </button>
+
+            <button class="skin bloqueada" data-skin="wapp">
+                <img src="imagens/caramelo-wapp.gif" alt="Skin wapp">
+                <span>❓ ???</span>
+            </button>
+
+            <button class="skin bloqueada" data-skin="espacial">
+                <img src="imagens/caramelo-espaço.gif" alt="Skin espacial">
+                <span>❓ ???</span>
+            </button>
+
+            <button class="skin bloqueada" data-skin="lendario">
+                <img src="imagens/caramelo-sigma.gif" alt="Skin lendário">
+                <span>❓ ???</span>
+            </button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
