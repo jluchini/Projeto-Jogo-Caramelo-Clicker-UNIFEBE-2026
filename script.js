@@ -438,6 +438,21 @@ function aplicarVisualCaramelo(estado) {
     caramelo.src = skins[skinAtual][estado];
 }
 
+function preCarregarImagens() {
+    Object.values(skins).forEach((skin) => {
+        const imgParado = new Image();
+        imgParado.src = skin.parado;
+
+        const imgRegando = new Image();
+        imgRegando.src = skin.regando;
+    });
+
+    fasesPlanta.forEach((fase) => {
+        const imgPlanta = new Image();
+        imgPlanta.src = fase.imagem;
+    });
+}
+
 document.querySelectorAll(".skin").forEach((botao) => {
     botao.addEventListener("click", () => {
         const nomeSkin = botao.dataset.skin;
@@ -490,6 +505,8 @@ if (volumeEfeitos) {
         somVitoria.volume = volume;
     });
 }
+
+preCarregarImagens();
 
 aplicarVisualCaramelo("parado");
 
