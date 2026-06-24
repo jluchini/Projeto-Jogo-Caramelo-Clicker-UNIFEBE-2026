@@ -92,6 +92,29 @@ body {
     box-shadow: 0 1px 0 var(--cor-borda-botao);
 }
 
+.click-area,
+.personagem-area,
+#caramelo,
+#planta,
+.regador-container,
+.combo-container {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+img,
+#caramelo,
+#planta {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+}
+
+#caramelo,
+#planta {
+    pointer-events: auto;
+}
+
 .click-area {
     flex: 1;
     height: 100%;
@@ -443,6 +466,21 @@ body {
     display: block;
     margin-top: 5px;
     color: green;
+}
+
+.resumo-upgrades {
+    text-align: center;
+    color: var(--cor-branco);
+    font-weight: bold;
+    margin: -18px 0 24px;
+    text-shadow: var(--sombra-texto-menor);
+}
+
+.upgrade small {
+    display: block;
+    margin-top: 4px;
+    color: var(--cor-texto-medio);
+    font-weight: bold;
 }
 
 .modal {

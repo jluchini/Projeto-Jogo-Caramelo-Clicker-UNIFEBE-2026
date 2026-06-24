@@ -10,93 +10,101 @@
 
 <body>
     <div class="escala-site">
-    <main class="jogo">
+        <main class="jogo">
 
-        <section class="botoes-superiores">
-            <button id="botaoConfig">⚙️</button>
-            <button id="botaoSkins">👕</button>
-        </section>
+            <section class="botoes-superiores">
+                <button id="botaoConfig">⚙️</button>
+                <button id="botaoSkins">👕</button>
+            </section>
 
-        <section class="click-area">
+            <section class="click-area">
 
-            <div class="contador">
-                <img src="imagens/folha-contador-icone.png" alt="Folha" class="icone-folha">
-                <h1 id="totalFolhas">0</h1>
-                <p>Folhas</p>
-            </div>
+                <div class="contador">
+                    <img draggable="false" src="imagens/folha-contador-icone.png" alt="Folha" class="icone-folha">
+                    <h1 id="totalFolhas">0</h1>
+                    <p>Folhas</p>
+                </div>
 
-            <div class="contador-regador">
+                <div class="contador-regador">
 
-                <h3 class="titulo-crescimento">Crescimento da Árvore</h3>
-                <div class="regador-container">
-                    <div class="agua-recorte">
-                        <img id="aguaRegador" src="imagens/mascara-agua-regador.png" alt="">
+                    <h3 class="titulo-crescimento">Crescimento da Árvore</h3>
+                    <div class="regador-container">
+                        <div class="agua-recorte">
+                            <img draggable="false" id="aguaRegador" src="imagens/mascara-agua-regador.png" alt="">
+                        </div>
+
+                        <img draggable="false" src="imagens/regador-contador-icone.png" class="regador-img">
                     </div>
 
-                    <img src="imagens/regador-contador-icone.png" class="regador-img">
+                    <p id="textoRegador">0 / 1000</p>
+
                 </div>
 
-                <p id="textoRegador">0 / 1000</p>
+                <div class="combo-container">
+                    <div id="textoBonus" class="texto-bonus">🔥 2X 🔥</div>
 
-            </div>
-
-            <div class="combo-container">
-                <div id="textoBonus" class="texto-bonus">🔥 2X 🔥</div>
-
-                <div class="barra-combo">
-                    <div id="barraCombo"></div>
+                    <div class="barra-combo">
+                        <div id="barraCombo"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="personagem-area">
-                <img id="planta" src="imagens/muda-move.gif" alt="Planta">
-                <img id="caramelo" src="imagens/gif caramelo.gif" alt="Caramelo">
-            </div>
-
-        </section>
-
-        <aside class="loja">
-            <h2>Click Power</h2>
-            <h3 id="clickPower">+1</h3>
-
-            <div class="upgrade" id="upgradePetisco">
-                <span class="upgrade-icone">🦴</span>
-                <div>
-                    <h4>Petisco Motivacional</h4>
-                    <p>+10 folha por clique</p>
-                    <strong>300 folhas</strong>
+                <div class="personagem-area">
+                    <img draggable="false" id="planta" src="imagens/muda-move.gif" alt="Planta">
+                    <img draggable="false" id="caramelo" src="imagens/gif caramelo.gif" alt="Caramelo">
                 </div>
-            </div>
 
-            <div class="upgrade" id="upgradeWapp">
-                <span class="upgrade-icone">🌠</span>
-                <div>
-                    <h4>Wapp Milagroso</h4>
-                    <p>+40 folhas por clique</p>
-                    <strong>2.500 folhas</strong>
-                </div>
-            </div>
+            </section>
 
-            <div class="upgrade" id="upgradeArminha">
-                <span class="upgrade-icone">🛸</span>
-                <div>
-                    <h4>Arminha de Água Espacial</h4>
-                    <p>+120 folhas por clique</p>
-                    <strong>9.000 folhas</strong>
-                </div>
-            </div>
+            <aside class="loja">
+                <h2>Click Power</h2>
+                <h3 id="clickPower">+1</h3>
 
-            <div class="upgrade" id="upgradeCapa">
-                <span class="upgrade-icone">🌧️</span>
-                <div>
-                    <h4>Capa de Chuva do Caos</h4>
-                    <p>+300 folhas por clique</p>
-                    <strong>15.000 folhas</strong>
+                <p class="resumo-upgrades">
+                    Upgrades comprados: <strong id="totalUpgrades">0</strong>
+                </p>
+
+                <div class="upgrade" id="upgradePetisco">
+                    <span class="upgrade-icone">🦴</span>
+                    <div>
+                        <h4>Petisco Motivacional</h4>
+                        <p>+10 folha por clique</p>
+                        <strong>300 folhas</strong>
+                        <small>Comprado: <span class="qtd-upgrade">0</span>x</small>
+                    </div>
                 </div>
-            </div>
-        </aside>
-    </main>
-</div>
+
+                <div class="upgrade" id="upgradeWapp">
+                    <span class="upgrade-icone">🌠</span>
+                    <div>
+                        <h4>Wapp Milagroso</h4>
+                        <p>+40 folhas por clique</p>
+                        <strong>2.500 folhas</strong>
+                        <small>Comprado: <span class="qtd-upgrade">0</span>x</small>
+                    </div>
+                </div>
+
+                <div class="upgrade" id="upgradeArminha">
+                    <span class="upgrade-icone">🛸</span>
+                    <div>
+                        <h4>Arminha de Água Espacial</h4>
+                        <p>+120 folhas por clique</p>
+                        <strong>9.000 folhas</strong>
+                        <small>Comprado: <span class="qtd-upgrade">0</span>x</small>
+                    </div>
+                </div>
+
+                <div class="upgrade" id="upgradeCapa">
+                    <span class="upgrade-icone">🌧️</span>
+                    <div>
+                        <h4>Capa de Chuva do Caos</h4>
+                        <p>+300 folhas por clique</p>
+                        <strong>15.000 folhas</strong>
+                        <small>Comprado: <span class="qtd-upgrade">0</span>x</small>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
 
     <section id="menuConfig" class="modal escondido">
         <button class="fechar">X</button>
@@ -119,27 +127,27 @@
 
         <div class="skins-grid">
             <button class="skin liberada" data-skin="normal">
-                <img src="imagens/gif caramelo.gif" alt="Skin normal">
+                <img draggable="false" src="imagens/gif caramelo.gif" alt="Skin normal">
                 <span>🐕 Normal</span>
             </button>
 
             <button class="skin bloqueada" data-skin="motivado">
-                <img src="imagens/caramelo-motivado.gif" alt="Skin motivado">
+                <img draggable="false" src="imagens/caramelo-motivado.gif" alt="Skin motivado">
                 <span>❓ ???</span>
             </button>
 
             <button class="skin bloqueada" data-skin="wapp">
-                <img src="imagens/caramelo-wapp.gif" alt="Skin wapp">
+                <img draggable="false" src="imagens/caramelo-wapp.gif" alt="Skin wapp">
                 <span>❓ ???</span>
             </button>
 
             <button class="skin bloqueada" data-skin="espacial">
-                <img src="imagens/caramelo-espaço.gif" alt="Skin espacial">
+                <img draggable="false" src="imagens/caramelo-espaço.gif" alt="Skin espacial">
                 <span>❓ ???</span>
             </button>
 
             <button class="skin bloqueada" data-skin="lendario">
-                <img src="imagens/caramelo-sigma.gif" alt="Skin lendário">
+                <img draggable="false" src="imagens/caramelo-sigma.gif" alt="Skin lendário">
                 <span>❓ ???</span>
             </button>
         </div>

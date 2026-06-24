@@ -106,27 +106,37 @@ const upgrades = {
     petisco: {
         elemento: document.getElementById("upgradePetisco"),
         custo: 300,
-        ganho: 10
+        ganho: 10,
+        compras: 0,
+        aumentoCusto: 100
     },
 
     wapp: {
         elemento: document.getElementById("upgradeWapp"),
-        custo: 2000,
-        ganho: 40
+        custo: 2500,
+        ganho: 40,
+        compras: 0,
+        aumentoCusto: 100
     },
 
     arminha: {
         elemento: document.getElementById("upgradeArminha"),
         custo: 9000,
-        ganho: 120
+        ganho: 120,
+        compras: 0,
+        aumentoCusto: 100
     },
 
     capa: {
         elemento: document.getElementById("upgradeCapa"),
         custo: 15000,
-        ganho: 300
+        ganho: 300,
+        compras: 0,
+        aumentoCusto: 100
     }
 };
+
+const totalUpgrades = document.getElementById("totalUpgrades");
 
 document.addEventListener("click", iniciarMusica, { once: true });
 
@@ -172,7 +182,9 @@ function clicarCaramelo(event) {
         combo = 100;
     }
 
-    aplicarVisualCaramelo("regando");
+    if (!caramelo.classList.contains("estado-regando")) {
+        aplicarVisualCaramelo("regando");
+    }
     caramelo.classList.add("clicando");
 
     clearTimeout(temporizadorParado);
@@ -191,7 +203,14 @@ function clicarCaramelo(event) {
 
 function atualizarTela() {
     totalFolhas.textContent = Math.floor(folhas);
+
     clickPower.textContent = "+" + folhasPorClique;
+
+    if (totalUpgrades) {
+        totalUpgrades.textContent = Object.values(upgrades)
+            .reduce((total, upgrade) => total + upgrade.compras, 0);
+    }
+
     barraCombo.style.height = combo + "%";
 
     atualizarRegador();
@@ -230,10 +249,20 @@ function atualizarRegador() {
 
 function atualizarLoja() {
     Object.values(upgrades).forEach((upgrade) => {
-        const textoCusto = upgrade.elemento.querySelector("strong");
+
+        const textoCusto =
+            upgrade.elemento.querySelector("strong");
+
+        const textoCompras =
+            upgrade.elemento.querySelector(".qtd-upgrade");
 
         if (textoCusto) {
-            textoCusto.textContent = formatarFolhas(upgrade.custo) + " folhas";
+            textoCusto.textContent =
+                formatarFolhas(upgrade.custo) + " folhas";
+        }
+
+        if (textoCompras) {
+            textoCompras.textContent = upgrade.compras;
         }
 
         if (folhas >= upgrade.custo) {
@@ -314,7 +343,8 @@ function comprarUpgrade(upgrade) {
 
     folhas -= upgrade.custo;
     folhasPorClique += upgrade.ganho;
-    upgrade.custo += 100;
+    upgrade.compras++;
+    upgrade.custo += upgrade.aumentoCusto;
 
     tocarSom(somCompra);
 
